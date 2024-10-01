@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kebajikan Pelajar</title>
+    <link rel="icon" type="image/png" href="assets/icon_jpk.png"> <!-- Favicon Link -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative; /* For positioning Home button */
+        }
+
+        .container {
+            width: 80%;
+            margin-top: 65px;
+        }
+
+        .big-title {
+            font-size: 2em;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            padding: 20px;
+            background-color: #782982;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .item img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid #ddd;
+            margin-top: 10px;
+            cursor: pointer; /* Add pointer cursor */
+        }
+
+        .item .small-title {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* Styles for header */
+        .schedule-header {
+            background-color: #782982;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1001; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            width: 80%;
+            max-width: 700px;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            color: #fff;
+            font-size: 35px;
+            font-weight: bold;
+            transition: 0.3s;
+            z-index: 1002; /* On top of the modal */
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Style for HOME BUTTON */
+        .home-button {
+            position: absolute; /* Fixes the button in the viewport */
+            top: 10px;
+            left: 10px;
+            background-color: #782982;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+            z-index: 1000; /* Ensures the button is on top of other content */
+        }
+
+        .home-button:hover {
+            background-color: #5a1f63;
+        }
+
+        /* Styles for date, time, and day */
+        .datetime-container {
+            text-align: right;
+            font-size: 16px;
+            color: #333;
+            position: absolute;
+            top: 75px;
+            right: 10px;
+        }
+
+        #currentDate, #currentTime {
+            display: block; /* Display each on a new line */
+        }
+
+        #currentDate {
+            font-weight: bold;
+        }
+
+        #currentTime {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+
+<div class="schedule-header">
+    KEBAJIKAN PELAJAR
+</div>
+
+<div class="datetime-container">
+    <span id="currentDate"></span>
+    <span id="currentTime"></span>
+</div>
+
+<div class="container">
+    <div class="big-title">Tabung Kebajikan Pelajar</div>
+    <div class="grid">
+        <div class="item">
+            <div class="small-title">Tabung Kecemasan Pelajar</div>
+            <img src="assets/tabung1.jpg" alt="Tabung Kecemasan Pelajar" class="enlargeable">
+        </div>
+        <div class="item">
+            <div class="small-title">Bantuan Kewangan (Sara Diri) & Bantuan Pinjaman</div>
+            <img src="assets/tabung2.jpg" alt="Bantuan Kewangan" class="enlargeable">
+        </div>
+        <div class="item">
+            <div class="small-title">Bantuan Tambang Perjalanan Kematian Ibu/Bapa Kandung</div>
+            <img src="assets/tabung3.jpg" alt="Bantuan Tambang Perjalanan" class="enlargeable">
+        </div>
+        <div class="item">
+            <div class="small-title">Bantuan Bencana Alam & Bantuan Kes Kecurian/Kehilangan Barang</div>
+            <img src="assets/tabung4.jpg" alt="Bantuan Bencana Alam" class="enlargeable">
+        </div>
+    </div>
+    <div class="grid">
+        <div class="item">
+            <div class="small-title">Bantuan Zakat (Unit Zakat, Sedekah & Wakaf UiTMCPP)</div>
+            <img src="assets/zakat.jpg" alt="Bantuan Zakat" class="enlargeable">
+            <a href="https://zakatuitmpenang.com.my/" target="_blank">Klik di sini untuk maklumat lanjut</a>
+        </div>
+        <div class="item">
+            <div class="small-title">Foodbank Pelajar</div>
+            <img src="assets/poster_foodbank.jpg" alt="Foodbank Pelajar" class="enlargeable">
+        </div>
+        <!-- New Image -->
+        <div class="item">
+            <div class="small-title">Dapur HEP</div>
+            <img src="assets/dapur.jpg" alt="Dapur HEP" class="enlargeable">
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="">
+        </div>
+    </div>
+
+<script>
+    // Modal functionality
+    const modal = document.getElementById("imageModal");
+    const modalImage = document.getElementById("modalImage");
+    const closeButton = document.getElementsByClassName("close")[0];
+
+    // When an image is clicked, open the modal and display the clicked image
+    document.querySelectorAll('.enlargeable').forEach(image => {
+        image.onclick = function() {
+            modal.style.display = "flex";
+            modalImage.src = this.src;
+        }
+    });
+
+    // When the close button is clicked, close the modal
+    closeButton.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close the modal if user clicks outside the image
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+<script>
+    function updateDateTime() {
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const now = new Date();
+        const formattedDate = now.toLocaleDateString('en-MY', options);
+        const formattedTime = now.toLocaleTimeString('en-MY');
+
+        document.getElementById('currentDate').innerHTML = formattedDate;
+        document.getElementById('currentTime').innerHTML = formattedTime;
+    }
+
+    // Update time every second
+    setInterval(updateDateTime, 1000);
+    updateDateTime(); // Initial call
+</script>
+
+</body>
+</html>
